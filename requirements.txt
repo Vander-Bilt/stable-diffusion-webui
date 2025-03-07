@@ -19,6 +19,7 @@ open-clip-torch
 
 piexif
 protobuf==3.20.0
+wandb==0.16.6
 psutil
 pytorch_lightning
 requests
