@@ -95,6 +95,8 @@ def webui():
             root_path=f"/{cmd_opts.subpath}" if cmd_opts.subpath else "",
         )
 
+        print(f"启动了：{share_url}")
+
         startup_timer.record("gradio launch")
 
         # gradio uses a very open CORS policy via app.user_middleware, which makes it possible for
