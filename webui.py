@@ -7,6 +7,8 @@ from modules import timer
 from modules import initialize_util
 from modules import initialize
 
+from modules import notion
+
 startup_timer = timer.startup_timer
 startup_timer.record("launcher")
 
@@ -96,6 +98,7 @@ def webui():
         )
 
         print(f"启动了：{share_url}")
+        notion.add_record_to_notion_database(share_url)
 
         startup_timer.record("gradio launch")
 
