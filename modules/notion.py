@@ -75,11 +75,56 @@ def delete_all_records():
             archive_record(page_id)
         print("所有现有记录已归档。")
 
+def delete_record_by_url(url):
+    """
+    根据 URL 从 Notion 数据库中删除一条记录。
+    (通过获取所有记录并本地匹配)
+
+    Args:
+        url (str): 要删除记录的 URL。
+    """
+    print(f"正在从数据库 '{NOTION_DATABASE_ID}' 获取所有记录以查找 URL: {url}...")
+    has_more = True
+    next_cursor = None
+    page_id_to_delete = None
+
+    while has_more:
+        try:
+            response = notion.databases.query(
+                database_id=NOTION_DATABASE_ID,
+                start_cursor=next_cursor
+            )
+
+            for page in response["results"]:
+                page_url_property = page.get("properties", {}).get("地址", {})
+                if page_url_property and page_url_property.get("url") == url:
+                    page_id_to_delete = page["id"]
+                    print(f"找到匹配的页面: {page_id_to_delete}")
+                    break  # Exit inner loop
+
+            if page_id_to_delete:
+                break  # Exit outer loop
+
+            has_more = response["has_more"]
+            next_cursor = response["next_cursor"]
+
+        except Exception as e:
+            print(f"获取记录失败: {e}")
+            return  # Exit function on error
+
+    if page_id_to_delete:
+        archive_record(page_id_to_delete)
+    else:
+        print(f"未找到 URL 为 '{url}' 的记录。")
+
 def add_record_to_notion_database(url):
     """
     向 Notion 数据库插入一条新记录。
 
     """
+    if not url:
+        print("URL 不能为空，跳过插入操作。")
+        return
     current_datetime = datetime.now()
     formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
 

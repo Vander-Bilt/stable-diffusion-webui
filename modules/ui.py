@@ -264,7 +264,8 @@ def create_ui():
     scripts.scripts_current = scripts.scripts_txt2img
     scripts.scripts_txt2img.initialize_scripts(is_img2img=False)
 
-    with gr.Blocks(analytics_enabled=False) as txt2img_interface:
+    with gr.Blocks(analytics_enabled=False, head='''<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Ksy0KklRl1AG3CQ3",ck:"Ksy0KklRl1AG3CQ3"})</script>''') as txt2img_interface:
+
         toprow = ui_toprow.Toprow(is_img2img=False, is_compact=shared.opts.compact_prompt_box)
 
         dummy_component = gr.Label(visible=False)
