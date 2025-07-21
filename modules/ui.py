@@ -264,7 +264,7 @@ def create_ui():
     scripts.scripts_current = scripts.scripts_txt2img
     scripts.scripts_txt2img.initialize_scripts(is_img2img=False)
 
-    with gr.Blocks(analytics_enabled=False, head='''<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"Ksy0KklRl1AG3CQ3",ck:"Ksy0KklRl1AG3CQ3"})</script>''') as txt2img_interface:
+    with gr.Blocks(analytics_enabled=False) as txt2img_interface:
 
         toprow = ui_toprow.Toprow(is_img2img=False, is_compact=shared.opts.compact_prompt_box)
 
@@ -496,6 +496,26 @@ def create_ui():
         ui_extra_networks.setup_ui(extra_networks_ui, output_panel.gallery)
 
         extra_tabs.__exit__()
+
+
+        txt2img_interface.load(
+            None,
+            None,
+            None,
+            _js='''
+            () => {
+                !function(p){
+                    "use strict";
+                    !function(t){
+                        var s=window,e=document,i=p,c="".concat("https:"===e.location.protocol?"https://":"http://","sdk.51.la/js-sdk-pro.min.js"),n=e.createElement("script"),r=e.getElementsByTagName("script")[0];
+                        n.type="text/javascript",n.setAttribute("charset","UTF-8"),n.async=!0,n.src=c,n.id="LA_COLLECT",i.d=n;
+                        var o=function(){s.LA.ids.push(i)};
+                        s.LA?s.LA.ids&&o():(s.LA=p,s.LA.ids=[],o()),r.parentNode.insertBefore(n,r)
+                    }()
+                }({id:"Ksy0KklRl1AG3CQ3",ck:"Ksy0KklRl1AG3CQ3"});
+            }
+            '''
+        )
 
     scripts.scripts_current = scripts.scripts_img2img
     scripts.scripts_img2img.initialize_scripts(is_img2img=True)
