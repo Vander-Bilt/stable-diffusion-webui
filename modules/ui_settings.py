@@ -292,6 +292,7 @@ class UiSettings:
             for _i, k, _item in sorted(self.quicksettings_list, key=lambda x: self.quicksettings_names.get(x[1], x[0])):
                 component = create_setting_component(k, is_quicksettings=True)
                 self.component_dict[k] = component
+            gr.HTML('<a href="#open-modal-zh" class="modal-trigger">支持一下</a>')
 
     def add_functionality(self, demo):
         self.submit.click(
