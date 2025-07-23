@@ -297,51 +297,78 @@ class UiSettings:
                 self.component_dict[k] = component
             
 
-            user_language = shared.user_language
-            
-            print(f"用户浏览器语言: {user_language}")
-            
-            # 您可以根据用户的语言设置来自定义UI
-            if user_language and user_language.startswith('zh'):
-                print("检测到中文用户，显示中文界面")
-                gr.HTML(
-                    """
-                            <div style="display: flex; align-items: center; gap: 5px;">
-                                <p style="margin: 0;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。</p>
+            # 使用JavaScript动态检测用户浏览器语言并渲染相应的HTML内容
+            gr.HTML(
+                """
+                <div id="language-based-content"></div>
                 
-                                <a href="#open-modal-zh" class="modal-trigger">支持一下</a>
-                                
-                                <div id="open-modal-zh" class="modal">
-                                    <div class="modal-content">
-                                        <iframe id='pay_zh' src='https://donate.nav001.online/index_zh.html' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
-                                        <a href="#" class="close-button">❎ 关闭</a>
+                <script>
+                    // 在页面加载完成后执行
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // 获取用户浏览器语言
+                        const userLanguage = navigator.language || navigator.userLanguage;
+                        console.log('用户浏览器语言:', userLanguage);
+                        
+                        // 获取内容容器
+                        const contentContainer = document.getElementById('language-based-content');
+                        
+                        // 根据语言选择内容
+                        if (userLanguage && userLanguage.startsWith('zh')) {
+                            // 中文内容
+                            contentContainer.innerHTML = `
+                                <div style="display: flex; align-items: center; gap: 5px;">
+                                    <p style="margin: 0;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。</p>
+                    
+                                    <a href="#open-modal-zh" class="modal-trigger">支持一下</a>
+                                    
+                                    <div id="open-modal-zh" class="modal">
+                                        <div class="modal-content">
+                                            <iframe id='pay_zh' src='https://donate.nav001.online/index_zh.html' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
+                                            <a href="#" class="close-button">❎ 关闭</a>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                            </div>
-
-                    """    
-                )
-
-            else:
-                print("使用默认语言界面")
-                gr.HTML(
-                    """
-                            <div style="display: flex; align-items: center; gap: 5px;">
-                                <p style="margin: 0;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve.</p>
-                
-                                <a href="#open-modal" class="modal-trigger">Support Us!</a>
-                                
-                                <div id="open-modal" class="modal">
-                                    <div class="modal-content">
-                                        <iframe id='kofiframe' src='https://ko-fi.com/vanderbilt/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
-                                        <a href="#" class="close-button">❎ Close</a>
+                            `;
+                        } else {
+                            // 英文内容
+                            contentContainer.innerHTML = `
+                                <div style="display: flex; align-items: center; gap: 5px;">
+                                    <p style="margin: 0;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve.</p>
+                    
+                                    <a href="#open-modal" class="modal-trigger">Support Us!</a>
+                                    
+                                    <div id="open-modal" class="modal">
+                                        <div class="modal-content">
+                                            <iframe id='kofiframe' src='https://ko-fi.com/vanderbilt/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
+                                            <a href="#" class="close-button">❎ Close</a>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                            </div>
-                    """    
-                )
+                            `;
+                        }
+                        
+                        // 为模态窗口触发器添加事件监听器
+                        document.querySelectorAll('.modal-trigger').forEach(trigger => {
+                            trigger.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const modalId = this.getAttribute('href');
+                                const modal = document.querySelector(modalId);
+                                if (modal) modal.style.display = 'block';
+                            });
+                        });
+                        
+                        // 为关闭按钮添加事件监听器
+                        document.querySelectorAll('.close-button').forEach(button => {
+                            button.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                const modal = this.closest('.modal');
+                                if (modal) modal.style.display = 'none';
+                            });
+                        });
+                    });
+                </script>
+                """    
+            )
 
 
 

@@ -9,9 +9,12 @@ if not hasattr(shared, 'user_language'):
 # 创建中间件来获取用户浏览器语言，但只获取一次
 async def user_info_middleware(request: Request, call_next):
     # 只有当用户语言为空时才获取
+    print("=======  languaage =======")
     if shared.user_language is None:
+        print("=======  获取用户浏览器语言....... =======")
         # 获取用户浏览器语言
         accept_language = request.headers.get('accept-language')
+        print(f"=======  accept_language: {accept_language} =======")
         if accept_language:
             # 解析Accept-Language头，获取首选语言
             languages = accept_language.split(',') if accept_language else []
