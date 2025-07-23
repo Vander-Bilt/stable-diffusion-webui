@@ -288,7 +288,6 @@ class UiSettings:
         self.interface = settings_interface
 
     def add_quicksettings(self):
-        from modules import shared
 
         with gr.Row(elem_id="quicksettings", variant="compact"):
             # 添加所有快速设置组件

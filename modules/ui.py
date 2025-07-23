@@ -276,17 +276,20 @@ mycss = """
     .modal-content {
         background-color: #fff;
         padding: 0px;
-        border-radius: 8px;
+        border-radius: 28px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         max-width: 500px; /* 最大宽度 */
         width: 100%; /* 响应式宽度 */
+        height: 70vh; /* 高度占屏幕高度的70% */
         position: relative; /* 用于定位关闭按钮 */
+        margin: 0 auto; /* 水平居中 */
+        overflow: auto; /* 内容过多时可滚动 */
     }
 
     /* 关闭按钮样式 */
     .close-button {
         position: absolute;
-        bottom: 1.2rem;
+        bottom: 2rem;
         right: 1.2rem;
         color: #aaa;
         font-size: 18px;
