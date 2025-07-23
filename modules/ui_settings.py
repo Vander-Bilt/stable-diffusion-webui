@@ -298,7 +298,7 @@ class UiSettings:
             gr.HTML(
                 """
                         <div style="display: flex; align-items: center; gap: 5px;">
-                            <p style="margin: 0; white-space: nowrap;">如果你觉得有所帮助，欢迎支持我们配置更多的GPU资源，从而做得更好。</p>
+                            <p style="margin: 0;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。</p>
             
                             <a href="#open-modal-zh" class="modal-trigger">支持一下</a>
                             
@@ -312,7 +312,7 @@ class UiSettings:
                         </div>
                         
                         <div style="display: flex; align-items: center; gap: 5px;">
-                            <p style="margin: 0; white-space: nowrap;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve.</p>
+                            <p style="margin: 0;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve.</p>
             
                             <a href="#open-modal" class="modal-trigger">Support Us!</a>
                             
