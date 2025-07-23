@@ -288,44 +288,62 @@ class UiSettings:
         self.interface = settings_interface
 
     def add_quicksettings(self):
+        from modules import shared
+
         with gr.Row(elem_id="quicksettings", variant="compact"):
             # 添加所有快速设置组件
             for _i, k, _item in sorted(self.quicksettings_list, key=lambda x: self.quicksettings_names.get(x[1], x[0])):
                 component = create_setting_component(k, is_quicksettings=True)
                 self.component_dict[k] = component
             
-            # 只添加一次HTML块
-            gr.HTML(
-                """
-                        <div style="display: flex; align-items: center; gap: 5px;">
-                            <p style="margin: 0;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。</p>
+
+            user_language = shared.user_language
             
-                            <a href="#open-modal-zh" class="modal-trigger">支持一下</a>
-                            
-                            <div id="open-modal-zh" class="modal">
-                                <div class="modal-content">
-                                    <iframe id='pay_zh' src='https://donate.nav001.online/index_zh.html' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
-                                    <a href="#" class="close-button">❎ 关闭</a>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        
-                        <div style="display: flex; align-items: center; gap: 5px;">
-                            <p style="margin: 0;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve.</p>
+            print(f"用户浏览器语言: {user_language}")
             
-                            <a href="#open-modal" class="modal-trigger">Support Us!</a>
-                            
-                            <div id="open-modal" class="modal">
-                                <div class="modal-content">
-                                    <iframe id='kofiframe' src='https://ko-fi.com/vanderbilt/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
-                                    <a href="#" class="close-button">❎ Close</a>
+            # 您可以根据用户的语言设置来自定义UI
+            if user_language and user_language.startswith('zh'):
+                print("检测到中文用户，显示中文界面")
+                gr.HTML(
+                    """
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <p style="margin: 0;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。</p>
+                
+                                <a href="#open-modal-zh" class="modal-trigger">支持一下</a>
+                                
+                                <div id="open-modal-zh" class="modal">
+                                    <div class="modal-content">
+                                        <iframe id='pay_zh' src='https://donate.nav001.online/index_zh.html' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
+                                        <a href="#" class="close-button">❎ 关闭</a>
+                                    </div>
                                 </div>
+                                
                             </div>
-                            
-                        </div>
-                """    
-            )
+
+                    """    
+                )
+
+            else:
+                print("使用默认语言界面")
+                gr.HTML(
+                    """
+                            <div style="display: flex; align-items: center; gap: 5px;">
+                                <p style="margin: 0;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve.</p>
+                
+                                <a href="#open-modal" class="modal-trigger">Support Us!</a>
+                                
+                                <div id="open-modal" class="modal">
+                                    <div class="modal-content">
+                                        <iframe id='kofiframe' src='https://ko-fi.com/vanderbilt/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
+                                        <a href="#" class="close-button">❎ Close</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    """    
+                )
+
+
 
     def add_functionality(self, demo):
         self.submit.click(
