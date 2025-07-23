@@ -250,6 +250,58 @@ def create_override_settings_dropdown(tabname, row):
     return dropdown
 
 
+
+mycss = """
+
+    /* 模态窗口容器（遮罩层） */
+    .modal {
+        position: fixed; /* 固定定位，覆盖整个视口 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+        display: none; /* 默认隐藏 */
+        justify-content: center; /* 水平居中内容 */
+        align-items: center; /* 垂直居中内容 */
+        z-index: 1000; /* 确保在其他内容之上 */
+    }
+
+    /* 当 URL 的哈希片段匹配模态窗口 ID 时显示 */
+    .modal:target {
+        display: flex; /* 使用 flex 布局居中内容 */
+    }
+
+    /* 模态窗口内容区域 */
+    .modal-content {
+        background-color: #fff;
+        padding: 0px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        max-width: 500px; /* 最大宽度 */
+        width: 100%; /* 响应式宽度 */
+        position: relative; /* 用于定位关闭按钮 */
+    }
+
+    /* 关闭按钮样式 */
+    .close-button {
+        position: absolute;
+        bottom: 1.2rem;
+        right: 1.2rem;
+        color: #aaa;
+        font-size: 18px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .close-button:hover {
+        color: #333;
+    }
+
+
+    """
+
+
 def create_ui():
     import modules.img2img
     import modules.txt2img
@@ -1152,7 +1204,7 @@ def create_ui():
     for _interface, label, _ifid in interfaces:
         shared.tab_names.append(label)
 
-    with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="Stable Diffusion") as demo:
+    with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="Stable Diffusion", css=mycss) as demo:
         settings.add_quicksettings()
 
         parameters_copypaste.connect_paste_params_buttons()
