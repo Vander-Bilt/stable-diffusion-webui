@@ -274,22 +274,36 @@ mycss = """
 
     /* 模态窗口内容区域 */
     .modal-content {
-        background-color: #fff;
-        padding: 0px;
-        border-radius: 28px;
+        background-color: #f9f9f9;
+        padding: 0 1rem;
+        border-radius: 1rem;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        max-width: 500px; /* 最大宽度 */
-        width: 100%; /* 响应式宽度 */
-        height: 70vh; /* 高度占屏幕高度的70% */
+        width: 500px; /* 响应式宽度 */
+        height: 600px; /* 高度占屏幕高度的70% */
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 4rem;
         position: relative; /* 用于定位关闭按钮 */
-        margin: 0 auto; /* 水平居中 */
-        overflow: auto; /* 内容过多时可滚动 */
+    }
+
+    /* 小屏幕设备 (例如，最大宽度为 768px) */
+    @media (max-width: 768px) {
+        .modal-content {
+            margin-top: 2rem;
+        }
+    }
+    
+    /* 大屏幕设备 (例如，最小宽度为 1200px) */
+    @media (min-width: 1600px) {
+        .modal-content {
+            margin-top: 8rem;
+        }
     }
 
     /* 关闭按钮样式 */
     .close-button {
         position: absolute;
-        bottom: 2rem;
+        bottom: 0.7rem;
         right: 1.2rem;
         color: #aaa;
         font-size: 18px;
@@ -1261,14 +1275,12 @@ def create_ui():
                         if (userLanguage && userLanguage.startsWith('zh')) {
                             // 中文内容
                             contentContainer.innerHTML = `
-                                <div style="display: flex; align-items: center; gap: 5px;">
-                                    <p style="margin: 0;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。</p>
-                    
-                                    <a href="#open-modal-zh" class="modal-trigger">支持一下</a>
-                                    
+                                <div style="display: inline;">
+                                    <p style="margin: 0;display: inline;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。 <a href="#open-modal-zh" class="modal-trigger">支持一下</a></p>
+
                                     <div id="open-modal-zh" class="modal">
                                         <div class="modal-content">
-                                            <iframe id='pay_zh' src='https://donate.nav001.online/index_zh.html' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
+                                            <iframe id='pay_zh' src='https://donate.nav001.online/index_zh.html' style='border:none;width:100%;padding:0px;background:#f9f9f9;' height='600' title='vanderbilt'></iframe>
                                             <a href="#" class="close-button">❎ 关闭</a>
                                         </div>
                                     </div>
@@ -1277,14 +1289,12 @@ def create_ui():
                         } else {
                             // 英文内容
                             contentContainer.innerHTML = `
-                                <div style="display: flex; align-items: center; gap: 5px;">
-                                    <p style="margin: 0;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve.</p>
-                    
-                                    <a href="#open-modal" class="modal-trigger">Support Us!</a>
-                                    
+                                <div style="display: inline;">
+                                    <p style="margin: 0;display: inline;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve. <a href="#open-modal" class="modal-trigger">Support Us!</a></p>
+
                                     <div id="open-modal" class="modal">
                                         <div class="modal-content">
-                                            <iframe id='kofiframe' src='https://ko-fi.com/vanderbilt/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:28px;background:#f9f9f9;' height='712' title='vanderbilt'></iframe>
+                                            <iframe id='kofiframe' src='https://ko-fi.com/vanderbilt/?hidefeed=true&widget=true&embed=true&preview=true' style='border:none;width:100%;padding:0px;background:#f9f9f9;' height='600' title='vanderbilt'></iframe>
                                             <a href="#" class="close-button">❎ Close</a>
                                         </div>
                                     </div>
