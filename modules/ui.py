@@ -1276,7 +1276,7 @@ def create_ui():
                             // 中文内容
                             contentContainer.innerHTML = `
                                 <div style="display: inline;">
-                                    <p style="margin: 0;display: inline;">如果您认可我们的工作，期待您的支持，让我们能增添更多GPU资源，共同进步，做得更出色。 <a href="#open-modal-zh" class="modal-trigger">支持一下</a></p>
+                                    <a href="#open-modal-zh" class="modal-trigger" style="color: blue;text-decoration: underline;">支持一下</a>
 
                                     <div id="open-modal-zh" class="modal">
                                         <div class="modal-content">
@@ -1290,7 +1290,7 @@ def create_ui():
                             // 英文内容
                             contentContainer.innerHTML = `
                                 <div style="display: inline;">
-                                    <p style="margin: 0;display: inline;">If you find this helpful, your support in configuring more GPU resources would be greatly appreciated, enabling us to further improve. <a href="#open-modal" class="modal-trigger">Support Us!</a></p>
+                                    <a href="#open-modal" class="modal-trigger" style="color: blue;text-decoration: underline;">Support Us!</a>
 
                                     <div id="open-modal" class="modal">
                                         <div class="modal-content">
