@@ -1275,7 +1275,8 @@ def create_ui():
                         if (userLanguage && userLanguage.startsWith('zh')) {
                             // 中文内容
                             contentContainer.innerHTML = `
-                                <div style="display: inline;">
+                                <div style="display: inline-flex; align-items: center; gap: 0.2rem;">
+                                    <img src="https://donate.nav001.online/images/logomark.png" width="32" height="26" />
                                     <a href="#open-modal-zh" class="modal-trigger" style="color: blue;text-decoration: underline;">支持一下</a>
 
                                     <div id="open-modal-zh" class="modal">
@@ -1289,7 +1290,8 @@ def create_ui():
                         } else {
                             // 英文内容
                             contentContainer.innerHTML = `
-                                <div style="display: inline;">
+                                <div style="display: inline-flex; align-items: center; gap: 0.2rem;">
+                                    <img src="https://donate.nav001.online/images/logomark.png" width="32" height="26" />
                                     <a href="#open-modal" class="modal-trigger" style="color: blue;text-decoration: underline;">Support Us!</a>
 
                                     <div id="open-modal" class="modal">

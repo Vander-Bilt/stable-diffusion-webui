@@ -299,8 +299,9 @@ class UiSettings:
             # 使用JavaScript动态检测用户浏览器语言并渲染相应的HTML内容
             gr.HTML(
                 """
-                <div id="language-based-content"></div>
-
+                <div style="display: flex; justify-content: flex-end;">
+                  <div id="language-based-content" style="margin-right: 1rem;"></div>
+                </div>
                 """    
             )
 
