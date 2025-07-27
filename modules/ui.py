@@ -1224,7 +1224,7 @@ def create_ui():
 
         gr.HTML(
             """
-            <div style="position: absolute; top: 1rem; right: 1.5rem;">
+            <div style="position: absolute; top: 0rem; right: 0.5rem;">
               <div id="language-based-content" style="margin-right: 1rem;"></div>
             </div>
             """
