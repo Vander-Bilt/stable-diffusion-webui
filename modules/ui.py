@@ -1221,6 +1221,15 @@ def create_ui():
         shared.tab_names.append(label)
 
     with gr.Blocks(theme=shared.gradio_theme, analytics_enabled=False, title="Stable Diffusion", css=mycss) as demo:
+
+        gr.HTML(
+            """
+            <div style="position: absolute; top: 1rem; right: 1.5rem;">
+              <div id="language-based-content" style="margin-right: 1rem;"></div>
+            </div>
+            """
+        )
+
         settings.add_quicksettings()
 
         parameters_copypaste.connect_paste_params_buttons()

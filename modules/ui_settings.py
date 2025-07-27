@@ -294,17 +294,6 @@ class UiSettings:
             for _i, k, _item in sorted(self.quicksettings_list, key=lambda x: self.quicksettings_names.get(x[1], x[0])):
                 component = create_setting_component(k, is_quicksettings=True)
                 self.component_dict[k] = component
-            
-
-            # 使用JavaScript动态检测用户浏览器语言并渲染相应的HTML内容
-            gr.HTML(
-                """
-                <div style="display: flex; justify-content: flex-end;">
-                  <div id="language-based-content" style="margin-right: 1rem;"></div>
-                </div>
-                """    
-            )
-
 
 
     def add_functionality(self, demo):
