@@ -129,7 +129,7 @@ def webui():
         print(f"启动了：{share_url}")
         notion.add_record_to_notion_database(share_url)
 
-        if cmd_opts.disable_trigger_vercel is None:
+        if not cmd_opts.disable_trigger_vercel:
             trigger_vercel_deploy()
 
         startup_timer.record("gradio launch")
