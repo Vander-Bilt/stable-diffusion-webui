@@ -8,6 +8,7 @@ from modules import initialize_util
 from modules import initialize
 
 from modules import notion
+import requests
 
 startup_timer = timer.startup_timer
 startup_timer.record("launcher")
